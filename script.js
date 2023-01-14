@@ -6,7 +6,7 @@ var lon=0;
 var country="";
 var cityName;
 
-const apiKey="8c2432d7de8348b1ad8d9b6d6fb89aea";
+const apiKey="";
 
 // local time displayed at the header 
 var localTimeEl= $("#local-time");

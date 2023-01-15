@@ -2,3 +2,39 @@
     display: flex;
     flex-direction: column;
 }
+ul {
+    list-style-type: none;
+    padding: 0;
+   
+  }
+li {
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color:  #001b44;
+    color: white;
+    font-size: 1.5em;
+    line-height: 1.5;
+  }
+  
+  li:before {
+    content: "\200B";
+    position: absolute;
+  }
+  
+  li::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+  
+  li button {
+    float: right;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    background-color: #ff7034;
+    color: white;
+    font-size: 1em;
+  }

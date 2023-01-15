@@ -68,20 +68,15 @@ function captureCityName(event){
     })
     .then(resp1=>{
       console.log(resp1)
-      console.log(resp1[0])
       lat=resp1[0].lat
       lon=resp1[0].lon
       country=resp1[0].country
       cityName=resp1[0].name
-      console.log(lat);
-      console.log(lon);
-      console.log(country);
-      console.log(cityName);          
+             
       cityDisplayEl.textContent=cityName;
       // create a api based on city entered by user
       geoUrl="https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=8c2432d7de8348b1ad8d9b6d6fb89aea"+"&units=metric"
-      console.log(geoUrl) 
-
+      
       fetch(geoUrl).then(dataaa=>{
         console.log(dataaa)
         return dataaa.json()
@@ -97,26 +92,20 @@ function captureCityName(event){
                 console.log(info)
                 var timeSlot=12;
                 if(dayjs().format(' HH')<9){
-                  timeSlot=6;
-                  console.log(timeSlot)
+                  timeSlot=6;                 
                 }
                 if(dayjs().format(' HH')>=9&& dayjs().format(' HH')<18){
-                  timeSlot=12;
-                  console.log("timeslot :"+timeSlot+':00:00')
+                  timeSlot=12;                 
                 }
                 if( dayjs().format(' HH')>=18){
                   timeSlot=18;
-                  console.log(timeSlot)
                 }              
 
 
                 var timeInt=parseInt(dayjs().format(' HH'))
                 var timeText=dayjs().format(' HH')
                 var minText=":00:00"
-                console.log(typeof(timeInt))
-                console.log(typeof( timeInt.toString()))
-                console.log((timeSlot+':00:00'))
-
+             
                   for(var i=0;i<info.length;i++){
 
                   if(info[i].dt_txt.includes((timeSlot+':00:00')))
@@ -183,15 +172,10 @@ function captureCityName(event){
                     day5HumidityEl.textContent=day5Humidity;
                   }
 
-
-
-
                 }
-              }) 
-             
+              })              
 
-           })  
-           
+           })        
            
 
 

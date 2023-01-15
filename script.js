@@ -48,7 +48,7 @@ function displayTime() {
   var day5WindEl= document.getElementById('day5-wind')
   var day5HumidityEl=document.getElementById('day5-humidity')
 
-
+  var cityList = document.querySelector("#city-list");
   //----------------------------------------------------------------------------------------
   
 var inputEl=document.getElementById("user-input");
@@ -60,17 +60,23 @@ function captureCityName(event){
  
    var cityTyped=inputEl.value
    userGeneratedUrl="http://api.openweathermap.org/geo/1.0/direct?q="+cityTyped+"&limit=2&appid=8c2432d7de8348b1ad8d9b6d6fb89aea"
-
+   addToHistory();
    fetch(userGeneratedUrl).then(data=>{
     console.log(data)
     return data.json()
      
     })
-    .then(resp1=>{      
+    .then(resp1=>{
+      console.log(resp1)
+      console.log(resp1[0])
       lat=resp1[0].lat
       lon=resp1[0].lon
       country=resp1[0].country
-      cityName=resp1[0].name                
+      cityName=resp1[0].name
+      console.log(lat);
+      console.log(lon);
+      console.log(country);
+      console.log(cityName);          
       cityDisplayEl.textContent=cityName;
       // create a api based on city entered by user
       geoUrl="https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=8c2432d7de8348b1ad8d9b6d6fb89aea"+"&units=metric"
@@ -176,14 +182,85 @@ function captureCityName(event){
                     day5WindEl.textContent=day5Wind;
                     day5HumidityEl.textContent=day5Humidity;
                   }
+
+
+
+
                 }
               }) 
              
 
-           })        
- 
+           })  
+           
+           
+
+
 }
 
 // Event listnener for search button
 var searchButtonEL=document.getElementById("search-btn")
 searchButtonEL.addEventListener("click",captureCityName)
+
+
+var searchHistoryArray=[]
+
+function storeSearchValue() {
+  // Stringify and set key in localStorage 
+  localStorage.setItem("historyKey", JSON.stringify(searchHistoryArray));
+}
+
+function addToHistory(){
+ 
+    var history = inputEl.value.trim();
+  
+    // Return from function early if input is blank
+    if (history === "") {
+      return;
+    }
+  
+    // Add new city to searchHistory array, clear the input
+    if(!searchHistoryArray.includes(inputEl.value.trim())) {
+      searchHistoryArray.push(history);
+      inputEl.value = "";
+    }
+   
+  
+    // Store updated todos in localStorage, re-render the list
+       storeSearchValue();
+       renderCity();
+  }
+
+
+  
+  
+// The following function renders items in a  list as <li> elements
+function renderCity() {
+  // Clear cityList element 
+  cityList.innerHTML = ""; 
+
+  // Render a new list for each todo
+  for (var i = 0; i < searchHistoryArray.length; i++) {
+    var city = searchHistoryArray[i];
+
+    var li = document.createElement("li");
+    li.textContent = city;
+    li.setAttribute("data-index", i); 
+      
+  cityList.appendChild(li);
+  
+  }
+}
+
+
+
+
+
+
+// Autocoplete limited version only a few city stored in an array  just for testing
+
+$( function() {
+    var availableTags = ["Sydney","perth","adelaide", 'tehran' ];
+    $( "#user-input" ).autocomplete({
+      source: availableTags
+    });
+  } );

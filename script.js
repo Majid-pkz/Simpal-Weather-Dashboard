@@ -234,11 +234,22 @@ function renderCity() {
   
   }
 }
+// This function  will run when the page loads.
+function init() {
+  // Get stored cities from localStorage
+  var storedCity = JSON.parse(localStorage.getItem("historyKey"));
+
+  // If searchhistoryArray  were retrieved from localStorage, update it
+  if (storedCity !== null) {
+    searchHistoryArray = storedCity;
+  }  
+  renderCity();
+}
 
 
 
 
-
+init();
 
 // Autocoplete limited version only a few city stored in an array  just for testing
 

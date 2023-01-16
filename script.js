@@ -245,6 +245,13 @@ function init() {
   }  
   renderCity();
 }
+$('#city-list').on("click", (event) => { 
+  event.preventDefault(); 
+  inputEl.value=event.target.textContent; 
+  cityTyped=$('#user-input').val()
+  captureCityName(event)
+  inputEl.value=""
+});
 
 
 

@@ -5,7 +5,8 @@ var lat=0;
 var lon=0;
 var country="";
 var cityName;
-
+var weatherClass="";
+  var weatherType="";
 const apiKey="";
 
 // local time displayed at the header 
@@ -54,62 +55,78 @@ function displayTime() {
 var inputEl=document.getElementById("user-input");
 var cityDisplayEl= document.getElementById("main-city");
 
-
-function captureCityName(event){
-    event.preventDefault();
+function captureCityName(){
+  event.preventDefault();
+  iconRemove()
  
    var cityTyped=inputEl.value
    userGeneratedUrl="http://api.openweathermap.org/geo/1.0/direct?q="+cityTyped+"&limit=2&appid=8c2432d7de8348b1ad8d9b6d6fb89aea"
    addToHistory();
-   fetch(userGeneratedUrl).then(data=>{
-    console.log(data)
+   fetch(userGeneratedUrl).then(data=>{   
     return data.json()
      
     })
     .then(resp1=>{
-      console.log(resp1)
+      
+      console.log(resp1[0])
       lat=resp1[0].lat
       lon=resp1[0].lon
       country=resp1[0].country
       cityName=resp1[0].name
-             
+      console.log(lat);
+      console.log(lon);
+      console.log(country);
+      console.log(cityName);          
       cityDisplayEl.textContent=cityName;
       // create a api based on city entered by user
       geoUrl="https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=8c2432d7de8348b1ad8d9b6d6fb89aea"+"&units=metric"
-      
+      console.log(geoUrl) 
+
+    
+
       fetch(geoUrl).then(dataaa=>{
-        console.log(dataaa)
+      
         return dataaa.json()
          
         })
-        .then(respons=>{
-                console.log(respons)
+        .then(respons=>{            
              
               return respons.list
               }) 
               .then(info=>{
                 // to filter the tepm at different time of the day 6:00 am  12 pm and 18:00 
                 console.log(info)
-                var timeSlot=12;
+                var timeSlot;
                 if(dayjs().format(' HH')<9){
-                  timeSlot=6;                 
+                  timeSlot=6;
+                 
                 }
                 if(dayjs().format(' HH')>=9&& dayjs().format(' HH')<18){
-                  timeSlot=12;                 
+                  timeSlot=12;
+                
                 }
                 if( dayjs().format(' HH')>=18){
                   timeSlot=18;
-                }              
-
+                  
+                }  
+                  weatherType=info[0].weather[0].main       
+                iconFinder(weatherType);
+                $('#main-icon').addClass(weatherClass)
+                
 
                 var timeInt=parseInt(dayjs().format(' HH'))
                 var timeText=dayjs().format(' HH')
-                var minText=":00:00"
-             
+                var minText=":00:00"                
+
                   for(var i=0;i<info.length;i++){
+                    
 
                   if(info[i].dt_txt.includes((timeSlot+':00:00')))
+                  
                   {
+                     weatherType=info[i].weather[0]                    
+                    
+                    
                    todayTemp=info[i].main.temp;
                    todayWind=info[i].wind.speed;
                    todayHumidity=info[i].main.humidity                  
@@ -119,13 +136,16 @@ function captureCityName(event){
                    todayHumidityEl.textContent=todayHumidity;
                   }
                   var day1= dayjs().add(1,'day').format('YYYY-MM-DD');
+                  weatherType=info[i].weather[0].main       
+                 
+                  
                   if(info[i].dt_txt.includes(day1)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                    iconFinder(weatherType);                  
+                    $('#date1').addClass(weatherClass)
                     day1Temp=info[i].main.temp;
                     day1Wind=info[i].wind.speed;
-                    day1Humidity=info[i].main.humidity ;
-                    console.log(day1Temp);
-                    console.log(day1Wind);
-                    console.log(day1Humidity);
+                    day1Humidity=info[i].main.humidity ; 
+                    $('#day1-date').text(dayjs().add(1,'day').format('MMM DD, YYYY '))                
 
                     day1TempEl.textContent=day1Temp;
                     day1WindEl.textContent=day1Wind;
@@ -133,10 +153,12 @@ function captureCityName(event){
                   }
                   var day2= dayjs().add(2,'day').format('YYYY-MM-DD');
                   if(info[i].dt_txt.includes(day2)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                    iconFinder(weatherType);                  
+                    $('#date2').addClass(weatherClass)
                     day2Temp=info[i].main.temp;
                     day2Wind=info[i].wind.speed;
                     day2Humidity=info[i].main.humidity ;  
-
+                    $('#day2-date').text(dayjs().add(2,'day').format('MMM DD, YYYY ')) 
                     day2TempEl.textContent=day2Temp;
                     day2WindEl.textContent=day2Wind;
                     day2HumidityEl.textContent=day2Humidity;
@@ -144,47 +166,55 @@ function captureCityName(event){
                   var day3= dayjs().add(3,'day').format('YYYY-MM-DD');
                   if(info[i].dt_txt.includes(day3)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
                     day3Temp=info[i].main.temp;
+                    iconFinder(weatherType);                  
+                    $('#date3').addClass(weatherClass)
                     day3Wind=info[i].wind.speed;
                     day3Humidity=info[i].main.humidity ;
-                    
+                    $('#day3-date').text(dayjs().add(3,'day').format('MMM DD, YYYY ')) 
                     day3TempEl.textContent=day3Temp;
                     day3WindEl.textContent=day3Wind;
                     day3HumidityEl.textContent=day3Humidity;
                   }
                   var day4= dayjs().add(4,'day').format('YYYY-MM-DD');
                   if(info[i].dt_txt.includes(day4)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                    iconFinder(weatherType);                  
+                    $('#date4').addClass(weatherClass)
                     day4Temp=info[i].main.temp;
                     day4Wind=info[i].wind.speed;
                     day4Humidity=info[i].main.humidity ;
-                    
+                    $('#day4-date').text(dayjs().add(4,'day').format('MMM DD, YYYY ')) 
                     day4TempEl.textContent=day4Temp;
                     day4WindEl.textContent=day4Wind;
                     day4HumidityEl.textContent=day4Humidity;
                   }
                   var day5= dayjs().add(5,'day').format('YYYY-MM-DD');
-                  if(info[i].dt_txt.includes(day5)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                  if(info[i].dt_txt.includes(day5)){
+                    iconFinder(weatherType);                  
+                    $('#date5').addClass(weatherClass)
                     day5Temp=info[i].main.temp;
                     day5Wind=info[i].wind.speed;
                     day5Humidity=info[i].main.humidity ;
-                    
+                    $('#day5-date').text(dayjs().add(5,'day').format('MMM DD, YYYY ')) 
                     day5TempEl.textContent=day5Temp;
                     day5WindEl.textContent=day5Wind;
                     day5HumidityEl.textContent=day5Humidity;
                   }
 
+
+
                 }
-              })              
+              }) 
+             
 
-           })        
+           })  
            
-
+           
 
 }
 
 // Event listnener for search button
 var searchButtonEL=document.getElementById("search-btn")
 searchButtonEL.addEventListener("click",captureCityName)
-
 
 var searchHistoryArray=[]
 
@@ -214,7 +244,6 @@ function addToHistory(){
        renderCity();
   }
 
-
   
   
 // The following function renders items in a  list as <li> elements
@@ -222,21 +251,21 @@ function renderCity() {
   // Clear cityList element 
   cityList.innerHTML = ""; 
 
-  // Render a new list for each todo
+  // Render a new li for each todo
   for (var i = 0; i < searchHistoryArray.length; i++) {
     var city = searchHistoryArray[i];
 
     var li = document.createElement("li");
     li.textContent = city;
-    li.setAttribute("data-index", i); 
-      
+    li.setAttribute("data-index", i);  
+    
   cityList.appendChild(li);
   
   }
 }
 // This function  will run when the page loads.
 function init() {
-  // Get stored cities from localStorage
+  // Get stored todos from localStorage
   var storedCity = JSON.parse(localStorage.getItem("historyKey"));
 
   // If searchhistoryArray  were retrieved from localStorage, update it
@@ -245,16 +274,20 @@ function init() {
   }  
   renderCity();
 }
+
+
 $('#city-list').on("click", (event) => { 
-  event.preventDefault(); 
-  inputEl.value=event.target.textContent; 
+
+  event.preventDefault();
+  // $('#search-city').val(event.target.textContent);
+  // currentCity=$('#search-city').val(); $('#user-input').val();
+  // getCurrentConditions(event);
+    inputEl.value=event.target.textContent;
+ 
   cityTyped=$('#user-input').val()
-  captureCityName(event)
+  captureCityName()
   inputEl.value=""
 });
-
-
-
 
 init();
 
@@ -266,3 +299,49 @@ $( function() {
       source: availableTags
     });
   } );
+
+  
+  
+   function iconFinder(){    
+   
+   if(weatherType=='Clouds'){
+    weatherClass='cloud'   
+  }
+
+    else if(weatherType=='Snow'){
+   weatherClass='snow'  
+   }
+
+   
+  else if(weatherType=='Clear'){
+     weatherClass="clear"    
+    }
+  
+    
+    else if(weatherType=='Rain'){
+     weatherClass='rain'    
+    
+     }
+    else if(weatherType=='Thunderstorm'){
+     weatherClass='thunder'   
+    } 
+     
+     else{
+     
+      weatherClass='mist'    
+  
+     }
+      
+    }
+    function iconRemove(){
+      $('#main-icon').removeClass()
+   $('#date1').removeClass()
+   $('#date2').removeClass()
+   $('#date3').removeClass()
+   $('#date4').removeClass()
+   $('#date5').removeClass()
+    }
+
+  
+  
+

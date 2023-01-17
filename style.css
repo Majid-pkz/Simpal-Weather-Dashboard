@@ -1,40 +1,81 @@
 #search{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
+
 ul {
-    list-style-type: none;
-    padding: 0;
-   
-  }
+  list-style-type: none;
+  padding: 0;
+ 
+}
 li {
-    height: 50px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 5px;
-    background-color:  #001b44;
-    color: white;
-    font-size: 1.5em;
-    line-height: 1.5;
-  }
+  height: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color:  #001b44;
+  color: white;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+li:before {
+  content: "\200B";
+  position: absolute;
+}
+
+li::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+li button {
+  float: right;
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ff7034;
+  color: white;
+  font-size: 1em;
+}
+.cloud{
+  background-image: url("/Assets/cloudy.png");
   
-  li:before {
-    content: "\200B";
-    position: absolute;
-  }
-  
-  li::after {
-    content: " ";
-    display: block;
-    clear: both;
-  }
-  
-  li button {
-    float: right;
-    border: none;
-    height: 40px;
-    cursor: pointer;
-    background-color: #ff7034;
-    color: white;
-    font-size: 1em;
-  }
+  /* background-size: cover; */
+  background-repeat: no-repeat; 
+  min-height: 5rem;
+}
+.rain{
+  background-image: url("/Assets/rainy.png");
+  background-repeat: no-repeat; 
+  min-height: 5rem;
+}
+.snow{
+  background-image: url("/Assets/snowy.png");
+  background-repeat: no-repeat; 
+  min-height: 5rem;
+}
+.thunder{
+  background-image: url("/Assets/thunder.png");
+  background-repeat: no-repeat; 
+  min-height: 5rem;
+}
+.clear{
+  background-image: url("/Assets/clear.png");
+  background-repeat: no-repeat; 
+  min-height: 5rem;
+}
+.mist{
+  background-image: url("/Assets/mist-dust.png");
+  background-repeat: no-repeat; 
+  min-height: 5rem;
+}
+.background-melo {
+  background-color: #124559;
+}
+.frame{
+  border:beige solid 0.5rem;
+  border-radius: 5%;
+  background-color: rgb(2, 2, 39);
+}

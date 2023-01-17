@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <title>Simpal Weather-Dashboard</title>
+    <title>Weather-Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
@@ -13,7 +13,7 @@
   
 </head>
 <body>
-    <header class="p-3 text-center text-white bg-primary">
+    <header  class="p-3 text-center text-white background-melo ">
        
         <h2>Weather-Dashboard</h2>
         <p id="local-time"> </p>
@@ -21,7 +21,7 @@
     </header>     
 
     <main >
-        <section class="container-fluid  bg-dark text-light vh-100 ">
+        <section class="container-fluid  bg-dark text-light ">
             <div class="row">
                  <div id="cities" class="col-12 col-md-6 col-lg-3 my-5">
                     <h4>Search for a City :</h4>
@@ -35,23 +35,25 @@
 
                 <div class="col-12 col-md-6 col-lg-8 px-3">
 
-                    <div class="bg-danger p-5">
-                        <h4 ><span id="main-city" ></span> <span> </span> <span id="current-time"> </span> </h4>
+                    <div class="bg-success p-5">
+                        <h4 ><span id="main-city" ></span> <span> </span> <span id="current-time"> </span>
+                          <div  id="main-icon" ></div> 
+                        </h4>
                         <p > Temp:  <span id="today-temp" ></span>  °C   </p>
                         <p>Wind: <span id="today-wind">  </span> m/s</p>
                         <p>humidity: <span id="today-humidity"></span> %</p>
                     </div>
 
 
-                    <div class="bg-info p-5">
-                        <div class="my-5"><h5>5days forcast</h5></div>
+                    <div class="bg-info p-5 vh-100">
+                        <div class="my-5 text-dark"><h3>5days forcast</h3></div>
 
                         <div class="row col-12 ">
 
                             <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date1" class="card-header">Day1</div>
+                                <div  id="date1" class="card-header  "></div>
                                 <div class="card-body">
-                                    <h5 class="card-title">logo</h5>
+                                    <h5 id="day1-date" class="card-title"></h5>
                                     <div>
                                         <p  class="card-text"> <span>Temp :</span> <span id="day1-temp"></span> °C </p>
                                         <p  class="card-text"> <span>Wind :</span> <span id="day1-wind"></span> m/s</p>
@@ -60,10 +62,10 @@
                                 </div>
                             </div>
 
-                            <div class="card text-bg-secondary mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date2" class="card-header">Day2</div>
+                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
+                                <div id="date2" class="card-header "></div>
                                 <div class="card-body">
-                                    <h5 class="card-title">logo</h5>
+                                    <h5 id="day2-date" class="card-title"></h5>
                                     <div>
                                         <p class="card-text"> <span>Temp :</span> <span id="day2-temp"></span> °C </p>
                                         <p class="card-text"> <span>Wind :</span> <span id="day2-wind"></span> m/s</p>
@@ -72,10 +74,10 @@
                                 </div>
                             </div> 
                             
-                            <div class="card text-bg-success mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date3" class="card-header">Day3</div>
+                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
+                                <div id="date3" class="card-header"></div>
                                 <div class="card-body">
-                                    <h5 class="card-title">icon</h5>
+                                    <h5 id="day3-date" class="card-title"></h5>
                                     <div>
                                         <p class="card-text"> <span>Temp :</span> <span id="day3-temp"></span> °C   </p>
                                         <p class="card-text"> <span>Wind :</span><span id="day3-wind"></span> m/s </p>
@@ -84,10 +86,10 @@
                                 </div>
                             </div>
                             
-                            <div class="card text-bg-danger mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date4" class="card-header">Day4</div>
+                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
+                                <div id="date4" class="card-header"></div>
                                 <div class="card-body">
-                                     <h5 class="card-title">icon</h5>
+                                     <h5 id="day4-date" class="card-title"></h5>
                                      <div>
                                         <p class="card-text"> <span>Temp :</span> <span id="day4-temp"></span> °C</p>
                                         <p class="card-text"> <span>Wind :</span><span id="day4-wind"></span> m/s </p>
@@ -96,10 +98,10 @@
                                 
                                 </div>
                             </div>
-                            <div class="card text-bg-warning mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date5" class="card-header">Day5</div>
+                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
+                                <div id="date5" class="card-header"></div>
                                 <div class="card-body">
-                                    <h5 class="card-title">icon</h5>
+                                    <h5 id="day5-date" class="card-title">icon</h5>
                                     <div>
                                         <p class="card-text"> <span>Temp :</span> <span id="day5-temp"></span> °C</p>
                                         <p class="card-text"> <span>Wind :</span> <span id="day5-wind"></span> m/s </p>

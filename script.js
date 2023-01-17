@@ -60,7 +60,7 @@ function captureCityName(){
   iconRemove()
  
    var cityTyped=inputEl.value
-   userGeneratedUrl="http://api.openweathermap.org/geo/1.0/direct?q="+cityTyped+"&limit=2&appid=8c2432d7de8348b1ad8d9b6d6fb89aea"
+   userGeneratedUrl="https://api.openweathermap.org/geo/1.0/direct?q="+cityTyped+"&limit=2&appid=8c2432d7de8348b1ad8d9b6d6fb89aea"
    addToHistory();
    fetch(userGeneratedUrl).then(data=>{   
     return data.json()

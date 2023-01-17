@@ -186,6 +186,7 @@ function captureCityName(){
                     day4TempEl.textContent=day4Temp;
                     day4WindEl.textContent=day4Wind;
                     day4HumidityEl.textContent=day4Humidity;
+                    console.log(weatherClass)
                   }
                   var day5= dayjs().add(5,'day').format('YYYY-MM-DD');
                   if(info[i].dt_txt.includes(day5)){
@@ -198,8 +199,20 @@ function captureCityName(){
                     day5TempEl.textContent=day5Temp;
                     day5WindEl.textContent=day5Wind;
                     day5HumidityEl.textContent=day5Humidity;
+                    console.log(weatherClass)
                   }
-
+                  if(!info[i].dt_txt.includes(day5)){
+                    iconFinder(weatherType);                  
+                    $('#date5').addClass(weatherClass)
+                    day5Temp=info[info.length-1].main.temp;
+                    day5Wind=info[info.length-1].wind.speed;
+                    day5Humidity=info[info.length-1].main.humidity ;
+                    $('#day5-date').text(dayjs().add(5,'day').format('MMM DD, YYYY ')) 
+                    day5TempEl.textContent=day5Temp;
+                    day5WindEl.textContent=day5Wind;
+                    day5HumidityEl.textContent=day5Humidity;
+                    console.log(weatherClass)
+                  }
 
 
                 }

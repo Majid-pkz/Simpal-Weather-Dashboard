@@ -39,34 +39,34 @@ li button {
   color: white;
   font-size: 1em;
 }
-  /* the old paths were working in local machine but not on github so changed to ../Assets/.. */
+  /* the old paths were working in local machine but not on github so changed to ./Assets/.. */
 .cloud{
-  background-image: url("../assets/cloudy.png"); 
+  background-image: url("./Assets/cloudy.png"); 
   background-repeat: no-repeat; 
   min-height: 5rem;
 }
 .rain{
-  background-image: url("../assets/rainy.png");
+  background-image: url("./Assets/rainy.png");
   background-repeat: no-repeat; 
   min-height: 5rem;
 }
 .snow{
-  background-image: url("../assets/snowy.png");
+  background-image: url("./Assets/snowy.png");
   background-repeat: no-repeat; 
   min-height: 5rem;
 }
 .thunder{
-  background-image: url("../assets/thunder.png");
+  background-image: url("./Assets/thunder.png");
   background-repeat: no-repeat; 
   min-height: 5rem;
 }
 .clear{
-  background-image: url("../assets/clear.png");
+  background-image: url("./Assets/clear.png");
   background-repeat: no-repeat; 
   min-height: 5rem;
 }
 .mist{
-  background-image: url("../assets/mist-dust.png");
+  background-image: url("./Assets/mist-dust.png");
   background-repeat: no-repeat; 
   min-height: 5rem;
 }

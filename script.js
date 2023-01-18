@@ -312,8 +312,7 @@ $( function() {
       source: availableTags
     });
   } );
-
-  
+ 
   
    function iconFinder(){    
    

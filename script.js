@@ -12,7 +12,7 @@ const apiKey="";
 // local time displayed at the header 
 var localTimeEl= $("#local-time");
  function displayLocalTime(){
-    var localTimeValue=dayjs().format('MMM DD, YYYY [at] HH');
+    var localTimeValue=dayjs().format('MMM DD, YYYY ');
     localTimeEl.text(localTimeValue); }
  displayLocalTime();
  setInterval(displayTime, 1000); 

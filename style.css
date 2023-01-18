@@ -41,9 +41,7 @@ li button {
 }
   /* the old paths were working in local machine but not on github so changed to ../Assets/.. */
 .cloud{
-  background-image: url("../Assets/cloudy.png");
-  
-  /* background-size: cover; */
+  background-image: url("../Assets/cloudy.png"); 
   background-repeat: no-repeat; 
   min-height: 5rem;
 }

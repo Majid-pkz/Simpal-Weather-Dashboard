@@ -139,68 +139,85 @@ function captureCityName(){
                   weatherType=info[i].weather[0].main       
                  
                   
-                  if(info[i].dt_txt.includes(day1)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
-                    iconFinder(weatherType);                  
-                    $('#date1').addClass(weatherClass)
-                    day1Temp=info[i].main.temp;
-                    day1Wind=info[i].wind.speed;
-                    day1Humidity=info[i].main.humidity ; 
-                    $('#day1-date').text(dayjs().add(1,'day').format('MMM DD, YYYY '))                
+                  // if(info[i].dt_txt.includes(day1)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                  //   iconFinder(weatherType);                  
+                  //   $('#date1').addClass(weatherClass)
+                  //   day1Temp=info[i].main.temp;
+                  //   day1Wind=info[i].wind.speed;
+                  //   day1Humidity=info[i].main.humidity ; 
+                  //   $('#day1-date').text(dayjs().add(1,'day').format('MMM DD, YYYY '))                
 
-                    day1TempEl.textContent=day1Temp;
-                    day1WindEl.textContent=day1Wind;
-                    day1HumidityEl.textContent=day1Humidity;
+                  //   day1TempEl.textContent=day1Temp;
+                  //   day1WindEl.textContent=day1Wind;
+                  //   day1HumidityEl.textContent=day1Humidity;
+                  // }
+
+                  for (let index = 1; index < 5; index++) {
+                    var dayNum = dayjs().add(index,'day').format('YYYY-MM-DD');
+                    if(info[i].dt_txt.includes(dayNum)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                      iconFinder(weatherType);                  
+                      $('#date'+index).addClass(weatherClass);
+                      dayNumTemp=info[i].main.temp;
+                      dayNumWind=info[i].wind.speed;
+                      dayNumHumidity=info[i].main.humidity ;  
+                      $('#day'+index+'-date').text(dayjs().add(index,'day').format('MMM DD, YYYY ')) 
+                      document.getElementById('day'+index+'-temp').textContent=dayNumTemp;
+
+                      document.getElementById('day'+index+'-wind').textContent=dayNumWind;
+                      document.getElementById('day'+index+'-humidity').textContent=dayNumHumidity;
+                    }
+                    
                   }
-                  var day2= dayjs().add(2,'day').format('YYYY-MM-DD');
-                  if(info[i].dt_txt.includes(day2)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
-                    iconFinder(weatherType);                  
-                    $('#date2').addClass(weatherClass)
-                    day2Temp=info[i].main.temp;
-                    day2Wind=info[i].wind.speed;
-                    day2Humidity=info[i].main.humidity ;  
-                    $('#day2-date').text(dayjs().add(2,'day').format('MMM DD, YYYY ')) 
-                    day2TempEl.textContent=day2Temp;
-                    day2WindEl.textContent=day2Wind;
-                    day2HumidityEl.textContent=day2Humidity;
-                  }
-                  var day3= dayjs().add(3,'day').format('YYYY-MM-DD');
-                  if(info[i].dt_txt.includes(day3)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
-                    day3Temp=info[i].main.temp;
-                    iconFinder(weatherType);                  
-                    $('#date3').addClass(weatherClass)
-                    day3Wind=info[i].wind.speed;
-                    day3Humidity=info[i].main.humidity ;
-                    $('#day3-date').text(dayjs().add(3,'day').format('MMM DD, YYYY ')) 
-                    day3TempEl.textContent=day3Temp;
-                    day3WindEl.textContent=day3Wind;
-                    day3HumidityEl.textContent=day3Humidity;
-                  }
-                  var day4= dayjs().add(4,'day').format('YYYY-MM-DD');
-                  if(info[i].dt_txt.includes(day4)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
-                    iconFinder(weatherType);                  
-                    $('#date4').addClass(weatherClass)
-                    day4Temp=info[i].main.temp;
-                    day4Wind=info[i].wind.speed;
-                    day4Humidity=info[i].main.humidity ;
-                    $('#day4-date').text(dayjs().add(4,'day').format('MMM DD, YYYY ')) 
-                    day4TempEl.textContent=day4Temp;
-                    day4WindEl.textContent=day4Wind;
-                    day4HumidityEl.textContent=day4Humidity;
-                    console.log(weatherClass)
-                  }
+                  // var day2= dayjs().add(2,'day').format('YYYY-MM-DD');
+                  // if(info[i].dt_txt.includes(day2)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                  //   iconFinder(weatherType);                  
+                  //   $('#date2').addClass(weatherClass)
+                  //   day2Temp=info[i].main.temp;
+                  //   day2Wind=info[i].wind.speed;
+                  //   day2Humidity=info[i].main.humidity ;  
+                  //   $('#day2-date').text(dayjs().add(2,'day').format('MMM DD, YYYY ')) 
+                  //   day2TempEl.textContent=day2Temp;
+                  //   day2WindEl.textContent=day2Wind;
+                  //   day2HumidityEl.textContent=day2Humidity;
+                  // }
+                  // var day3= dayjs().add(3,'day').format('YYYY-MM-DD');
+                  // if(info[i].dt_txt.includes(day3)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                  //   day3Temp=info[i].main.temp;
+                  //   iconFinder(weatherType);                  
+                  //   $('#date3').addClass(weatherClass)
+                  //   day3Wind=info[i].wind.speed;
+                  //   day3Humidity=info[i].main.humidity ;
+                  //   $('#day3-date').text(dayjs().add(3,'day').format('MMM DD, YYYY ')) 
+                  //   day3TempEl.textContent=day3Temp;
+                  //   day3WindEl.textContent=day3Wind;
+                  //   day3HumidityEl.textContent=day3Humidity;
+                  // }
+                  // var day4= dayjs().add(4,'day').format('YYYY-MM-DD');
+                  // if(info[i].dt_txt.includes(day4)&& info[i].dt_txt.includes((timeSlot+':00:00'))){
+                  //   iconFinder(weatherType);                  
+                  //   $('#date4').addClass(weatherClass)
+                  //   day4Temp=info[i].main.temp;
+                  //   day4Wind=info[i].wind.speed;
+                  //   day4Humidity=info[i].main.humidity ;
+                  //   $('#day4-date').text(dayjs().add(4,'day').format('MMM DD, YYYY ')) 
+                  //   day4TempEl.textContent=day4Temp;
+                  //   day4WindEl.textContent=day4Wind;
+                  //   day4HumidityEl.textContent=day4Humidity;
+                  //   console.log(weatherClass)
+                  // }
                   var day5= dayjs().add(5,'day').format('YYYY-MM-DD');
-                  if(info[i].dt_txt.includes(day5)){
-                    iconFinder(weatherType);                  
-                    $('#date5').addClass(weatherClass)
-                    day5Temp=info[i].main.temp;
-                    day5Wind=info[i].wind.speed;
-                    day5Humidity=info[i].main.humidity ;
-                    $('#day5-date').text(dayjs().add(5,'day').format('MMM DD, YYYY ')) 
-                    day5TempEl.textContent=day5Temp;
-                    day5WindEl.textContent=day5Wind;
-                    day5HumidityEl.textContent=day5Humidity;
-                    console.log(weatherClass)
-                  }
+                  // if(info[i].dt_txt.includes(day5)){
+                  //   iconFinder(weatherType);                  
+                  //   $('#date5').addClass(weatherClass)
+                  //   day5Temp=info[i].main.temp;
+                  //   day5Wind=info[i].wind.speed;
+                  //   day5Humidity=info[i].main.humidity ;
+                  //   $('#day5-date').text(dayjs().add(5,'day').format('MMM DD, YYYY ')) 
+                  //   day5TempEl.textContent=day5Temp;
+                  //   day5WindEl.textContent=day5Wind;
+                  //   day5HumidityEl.textContent=day5Humidity;
+                  //   console.log(weatherClass)
+                  // }
                   if(!info[i].dt_txt.includes(day5)){
                     iconFinder(weatherType);                  
                     $('#date5').addClass(weatherClass)

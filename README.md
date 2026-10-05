@@ -26,16 +26,21 @@ No local server or local testing setup is required for this workflow.
 
 | Setting | Value |
 | --- | --- |
-| Worker name | `simpal-laundry-dashboard` |
+| Project name | `simpal-laundry-dashboard` |
 | Repository | `Majid-pkz/Simpal-Weather-Dashboard` |
-| Production branch | `updated2026` |
-| Root directory | Repository root (leave blank) |
+| Path | Repository root (`/` in the setup form) |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
+| Enable Preview builds | Off |
+| Protect with Cloudflare Access | Off |
 
-4. Deploy. The demo works immediately; live searches need the secret below.
-5. Open the Worker's **Settings → Variables and Secrets**, add a **Secret** named `OPENWEATHER_API_KEY`, paste your active OpenWeather key as its value, and save/deploy the change. This must be a runtime secret, rather than a build-only variable.
-6. Open the generated `workers.dev` address and search for a city. Future pushes to `updated2026` automatically deploy through the GitHub connection.
+4. Click **Deploy** to create the project. The current setup screen does not offer a branch selector. Cloudflare starts with the repository's default branch, `main`. Its initial build is expected to fail because the preserved original version has no `package.json`.
+5. Open the Worker's **Settings → Build → Branch control**, select **`updated2026`** as the production branch, and save.
+6. Push a new commit to `updated2026` to start a build from that branch. Every new push to the selected production branch triggers the build and deployment commands automatically. Check the new build's branch and commit in Cloudflare.
+7. After the build succeeds, the demo works immediately. To enable live searches, open **Settings → Variables and Secrets**, add a **Secret** named `OPENWEATHER_API_KEY`, paste your active OpenWeather key as its value, and deploy the change. This must be a runtime secret, rather than a build-only variable.
+8. Open the generated `workers.dev` address and search for a city.
+
+Keep the automatically created Cloudflare deployment token in the setup form. It serves a different purpose from the OpenWeather key, which is added in step 7.
 
 A purchased domain is optional. Cloudflare hosts both the website and the small weather request handler in this one Worker.
 

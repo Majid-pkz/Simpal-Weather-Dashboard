@@ -1,147 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
-    <title>Weather-Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Find a better window to hang your washing. A five-day weather and laundry planner.">
+<title>SimPal · Laundry weather</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script>
 </head>
 <body>
-    <header  class="p-3 text-center text-white background-melo ">
-       
-        <h2>Weather-Dashboard</h2>
-        <p id="local-time"> </p>
-            
-    </header>     
-
-    <main >
-        <section class="container-fluid  bg-dark text-light ">
-            <div class="row">
-                 <div id="cities" class="col-12 col-md-6 col-lg-3 my-5">
-                    <h4>Search for a City :</h4>
-                    <form class="" role="search">
-                        <input id="user-input" class="form-control me-2" type="search" placeholder="Sydney" aria-label="Search">
-                        <button id="search-btn" class="btn btn-outline-secondary bg-primary px-5 text-light my-3" type="submit">Search</button>
-                    </form>  
-                    <ul id="city-list"></ul>       
-                </div>
-
-
-                <div class="col-12 col-md-6 col-lg-8 px-3">
-
-                    <div class="bg-success p-5">
-                        <h4 ><span id="main-city" ></span> <span> </span> <span id="current-time"> </span>
-                          <div  id="main-icon" ></div> 
-                        </h4>
-                        <p > Temp:  <span id="today-temp" ></span>  °C   </p>
-                        <p>Wind: <span id="today-wind">  </span> m/s</p>
-                        <p>humidity: <span id="today-humidity"></span> %</p>
-                    </div>
-
-
-                    <div class="bg-info p-5 vh-100">
-                        <div class="my-5 text-dark"><h3>5days forcast</h3></div>
-
-                        <div class="row col-12 ">
-
-                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
-                                <div  id="date1" class="card-header  "></div>
-                                <div class="card-body">
-                                    <h5 id="day1-date" class="card-title"></h5>
-                                    <div>
-                                        <p  class="card-text"> <span>Temp :</span> <span id="day1-temp"></span> °C </p>
-                                        <p  class="card-text"> <span>Wind :</span> <span id="day1-wind"></span> m/s</p>
-                                        <p  class="card-text"> <span>Humidity :</span> <span id="day1-humidity"></span> %</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date2" class="card-header "></div>
-                                <div class="card-body">
-                                    <h5 id="day2-date" class="card-title"></h5>
-                                    <div>
-                                        <p class="card-text"> <span>Temp :</span> <span id="day2-temp"></span> °C </p>
-                                        <p class="card-text"> <span>Wind :</span> <span id="day2-wind"></span> m/s</p>
-                                        <p class="card-text"> <span>Humidity :</span> <span id="day2-humidity"></span> %</p>
-                                    </div>
-                                </div>
-                            </div> 
-                            
-                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date3" class="card-header"></div>
-                                <div class="card-body">
-                                    <h5 id="day3-date" class="card-title"></h5>
-                                    <div>
-                                        <p class="card-text"> <span>Temp :</span> <span id="day3-temp"></span> °C   </p>
-                                        <p class="card-text"> <span>Wind :</span><span id="day3-wind"></span> m/s </p>
-                                        <p class="card-text"> <span>Humidity :</span> <span id="day3-humidity"></span> %</p>
-                                    </div>                                               
-                                </div>
-                            </div>
-                            
-                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date4" class="card-header"></div>
-                                <div class="card-body">
-                                     <h5 id="day4-date" class="card-title"></h5>
-                                     <div>
-                                        <p class="card-text"> <span>Temp :</span> <span id="day4-temp"></span> °C</p>
-                                        <p class="card-text"> <span>Wind :</span><span id="day4-wind"></span> m/s </p>
-                                        <p class="card-text"> <span>Humidity :</span> <span id="day4-humidity"></span> %</p>
-                                    </div>
-                                
-                                </div>
-                            </div>
-                            <div class="card text-bg-primary mx-1 mb-3" style="max-width: 12rem;">
-                                <div id="date5" class="card-header"></div>
-                                <div class="card-body">
-                                    <h5 id="day5-date" class="card-title"></h5>
-                                    <div>
-                                        <p class="card-text"> <span>Temp :</span> <span id="day5-temp"></span> °C</p>
-                                        <p class="card-text"> <span>Wind :</span> <span id="day5-wind"></span> m/s </p>
-                                        <p class="card-text"> <span>Humidity :</span> <span id="day5-humidity"></span> %</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                         </div>        
-                    
-                    </div>  
-
-                         
-                </div>
-                    
-           </div>
-
-        </section>
-
-    </main>
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-      crossorigin="anonymous"
-    ></script>
-
-    <script src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-   
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    
-
-</body>
-
-</html>
-
-
-
+<header class="topbar"><a class="brand" href="./index.html"><span class="brand-icon">☀</span> SimPal<span class="brand-sub">a little weather wisdom</span></a><span class="edition">THE LAUNDRY EDITION</span></header>
+<main>
+<section class="intro"><div><p class="eyebrow">LESS GUESSWORK. FRESHER LAUNDRY.</p><h1>Good weather.<br><span>Great laundry day.</span></h1><p class="lead">Find a little sunshine in your week.<br>We’ll help you pick a window to hang your washing.</p></div>
+<div class="line-art" aria-hidden="true"><div class="sun">☀</div><div class="clothesline"><span class="shirt">👕</span><span class="sock">🧦</span><span class="shirt">👚</span></div><span class="art-caption">Fresh air is the best finishing touch.</span></div></section>
+<section class="search-panel" aria-label="Find your forecast"><form id="search-form"><label for="city-input">Where’s your washing line?</label><div class="search-row"><input id="city-input" placeholder="City, e.g. Sydney, AU" autocomplete="off" required maxlength="100"><button class="primary" id="search-button">Find my forecast <span aria-hidden="true">↗</span></button></div></form><div class="toolbar"><div id="history" aria-label="Recent cities"></div><button id="demo-button" class="text-button" type="button">Try demo</button></div></section>
+<p id="status" role="status" aria-live="polite"></p><div id="locations" class="location-options" aria-label="Matching locations"></div>
+<section id="dashboard" aria-label="Laundry forecast" hidden>
+<div class="section-heading"><div><p class="eyebrow" id="data-mode"></p><h2 id="location-name"></h2></div><p id="coverage" class="small"></p></div>
+<div class="overview"><article class="recommendation"><p class="eyebrow">YOUR LAUNDRY OUTLOOK</p><h2 id="recommendation-title"></h2><p id="recommendation-copy"></p><div id="recommendation-metrics" class="recommendation-metrics"></div><p class="recommendation-foot">An opportunity to plan around, not a promise of dry clothes.</p></article><article class="weather-now"><p class="eyebrow">NEXT FORECAST</p><div class="temperature"><span id="weather-icon" aria-hidden="true"></span><span id="temperature"></span></div><h3 id="weather-description"></h3><p id="next-time" class="small"></p><div id="next-metrics"></div></article></div>
+<p id="wet-notice" class="notice" hidden></p>
+<div class="section-heading forecast-heading"><div><p class="eyebrow">MAKE ROOM FOR A FRESH START</p><h2>Your drying outlook</h2></div><p class="small">Select a day to explore its forecast ↓</p></div><div id="day-cards" class="day-grid"></div>
+<section class="detail-panel" aria-labelledby="detail-title"><div class="section-heading"><h3 id="detail-title"></h3><span class="small">Three-hour forecast points</span></div><p id="day-explanation"></p><div id="timeline" class="timeline"></div></section>
+</section>
+<details class="method"><summary>How do we pick a laundry window?</summary><p>We compare future forecast points between 8 am and 6 pm in the city's local time, using daylight points where available. A candidate window needs at least two consecutive points, three hours apart, with precipitation probability at or below 20%, no forecast rain or snow, temperature above 5°C, wind below 30 km/h, and gusts below 45 km/h when reported.</p><p>Lower humidity, warmth and a gentle breeze improve the score. These are simple planning rules, not a scientific drying model. Windows span the first to last qualifying point; weather between points can change. “Peak rain chance” is the highest precipitation probability at a displayed point, not the probability for the entire day. Days may have partial coverage.</p><p>Forecasts cover about five days, which can touch six calendar dates. Times use OpenWeather’s city UTC offset; a daylight-saving transition within the forecast may shift them by an hour. Fabric, shade and airflow affect drying. Recheck before hanging washing outside.</p></details>
+<footer><span>SimPal <span aria-hidden="true">·</span> Small forecasts. Everyday decisions.</span><a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">Weather by OpenWeather ↗</a></footer>
+</main></body></html>

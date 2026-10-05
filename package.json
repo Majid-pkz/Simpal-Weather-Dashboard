@@ -1,0 +1,16 @@
+{
+  "name": "simpal-laundry-dashboard",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A plain JavaScript laundry planner using OpenWeather forecasts.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build-public.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.36.0"
+  }
+}

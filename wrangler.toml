@@ -1,0 +1,20 @@
+name = "simpal-laundry-dashboard"
+main = "weather-api.js"
+compatibility_date = "2026-10-05"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+# Configure OPENWEATHER_API_KEY as a runtime Secret in Cloudflare.
+[[ratelimits]]
+name = "WEATHER_RATE_LIMITER"
+namespace_id = "574301"
+simple = { limit = 20, period = 60 }
+
+[[ratelimits]]
+name = "UPSTREAM_RATE_LIMITER"
+namespace_id = "574302"
+simple = { limit = 40, period = 60 }

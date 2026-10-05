@@ -106,8 +106,10 @@ export async function handleRequest(request, env, context = {}, dependencies = {
     const upstreamURL = new URL('https://api.openweathermap.org/' + options.path);
     upstreamURL.search = new URLSearchParams({ ...options.params, appid: apiKey });
     const fetcher = dependencies.fetch || globalThis.fetch;
+    // Workers supports manual redirects. A 3xx is rejected by the !ok check
+    // below, so a redirected request can never forward the private API key.
     const response = await fetcher(upstreamURL, { signal: AbortSignal.timeout(8000),
-      headers: { Accept: 'application/json' }, redirect: 'error' });
+      headers: { Accept: 'application/json' }, redirect: 'manual' });
     if (!response.ok) {
       if (response.status === 429) return error('The weather service is busy. Please try again later.', 429, { 'Retry-After': '60' });
       // The raw error could echo credentials, so it is never returned or logged.
